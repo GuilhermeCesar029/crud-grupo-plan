@@ -11,10 +11,10 @@ export default {
     },
 
     atualizar:(data) => {
-        return http.put("update/"+ data.id, data)
+        return http.put('update/'+ data.id, data)
     },
 
-    apagar:(data) => {
-        return http.delete("delete/"+ data.id, data)
+    apagar:(id) => {
+        return http.delete('delete/'+ id)
     }
 }

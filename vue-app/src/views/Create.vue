@@ -81,8 +81,9 @@ export default {
         submit() {
             Api.salvar(this.eletrodomestico).then(resposta => {
                 alert('Cadastrado com sucesso!')
+                this.eletrodomestico = resposta
+                this.$router.push({name: 'Index'})
             })
-            //console.log(this.eletrodomestico);
         }
 
         
