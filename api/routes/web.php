@@ -14,5 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "view('welcome')";
 });
+
+Route::get('/show', 'App\Http\Controllers\Api\EletrodomesticoController@show');
+Route::post('/create', 'App\Http\Controllers\Api\EletrodomesticoController@create');
+Route::get('/show/{id}', 'App\Http\Controllers\Api\EletrodomesticoController@showById');
+Route::put('/update/{id}', 'App\Http\Controllers\Api\EletrodomesticoController@update');
+Route::get('/delete/{id}', 'App\Http\Controllers\Api\EletrodomesticoController@delete');
