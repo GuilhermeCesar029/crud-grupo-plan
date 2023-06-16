@@ -15,17 +15,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Geladeira Frost Free</td>
-                        <td>Este produto é totalmente versátil.</td>
-                        <td>220v</td>
-                        <td>Electrolux</td>
+                    <tr v-for="eletro of eletrodomesticos" :key="eletro.id">
+                        <td>{{eletro.id}}</td>
+                        <td>{{eletro.nome}}</td>
+                        <td>{{eletro.descricao}}.</td>
+                        <td>{{eletro.tensao}}</td>
+                        <td>{{eletro.marca}}</td>
                         <td>
                             <v-btn 
                                 color="red"
                                 icon
-                                @click="remover(1)"
+                                @click="remover(eletro)"
                             >
                                 <v-icon>mdi-delete</v-icon>
                             </v-btn>  
@@ -38,14 +38,33 @@
 </template>
 
 <script>
+import Api from '../services/client';
+
 export default {
+
+  mounted(){
+    this.listar()
+  },
+
   data () {
     return {
-      
+        eletrodomesticos: [],
+        eletrodomestico: {
+          id: '',
+          nome: '',
+          descricao: '',
+          tensao: '',
+          marca: '',
+        },
     }
   },
 
    methods:{
+       listar(){
+           Api.listar().then(resposta => {
+               this.eletrodomesticos = resposta.data
+           })
+       },
        remover(id){
            console.log(id);
        }
